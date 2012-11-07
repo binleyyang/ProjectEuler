@@ -11,9 +11,7 @@ public class TriangleNumbers {
 				System.out.println("The first triangle number that has over 500 divisors is " + triangle.get(i));
 			break;
 			}
-			
 		}
-			
 	}
 	
 	private static ArrayList<Integer> triangle(int x) {
@@ -37,5 +35,4 @@ public class TriangleNumbers {
 		}
 		return count;
 	}
-
 }
