@@ -10,6 +10,7 @@ public class Problem7 {
 				if (counter == 10001) {
 					System.out.println("The " + counter + "st prime number is " + i);
 					break;
+					
 				}
 		}
 	}
