@@ -4,8 +4,8 @@ public class Problem20 {
 	public static void main (String [] args) {
 		
 		int x = 100;
-		System.out.println("The factorial of " + x + " is " + factorial(x));
-		System.out.println("The sum of the digits of the factorial of " + x + " is " + sum(factorial(x)));
+		System.out.println("The factorial of " + x + " is " + factorial(x) + ".");
+		System.out.println("The sum of the digits of the factorial of " + x + " is " + sum(factorial(x)) + ".");
 		
 	}
 
