@@ -1,10 +1,12 @@
+import java.util.Arrays;
 
 public class Problem20 {
 	
 	public static void main (String [] args) {
 		
-		int x = 100;
+		int x = 12;
 		System.out.println("The factorial of " + x + " is " + factorial(x) + ".");
+		printer(lister(convert(factorial(x))));
 		System.out.println("The sum of the digits of the factorial of " + x + " is " + sum(factorial(x)) + ".");
 		
 	}
@@ -28,6 +30,10 @@ public class Problem20 {
 	
 	public static String convert (long x) {
 		return Long.toString(x);
+	}
+	
+	public static void printer(int[] x){
+		System.out.println(Arrays.toString(x));
 	}
 
 	public static int[] lister(String x){
