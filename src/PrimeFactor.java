@@ -11,9 +11,11 @@ public class PrimeFactor {
 		for (int i = 1; i < x; i++) {
 			if (x % i == 0) {
 				factor = (int)x / i;
-				if (primecheck(factor) == true) {
-					if (factor > max)
+				if (primecheck(factor) == true && i != 1) {
+					if (factor > max) {
 						max = factor;
+						System.out.println(max);
+					}
 				}
 			}
 		}
