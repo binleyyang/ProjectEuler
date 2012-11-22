@@ -1,0 +1,352 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Poker {
+
+	public static void main(String[] argumentsarehealty) throws InterruptedException {
+		
+		Scanner input = new Scanner( System.in );
+		String query = "";
+		while (!query.equals("Q")){
+			System.out.println("Enter [-t1] or [-test1] to generate and shuffle a deck.\nEnter [-t2] or [-test2] to generate, shuffle a deck, and be dealt two hands.\nEnter [-t3] or [-test3] for the quality of your hand to be evaluated.\nEnter [-t4] or [-test4] two compare the quality of two hands.\nEnter [Q] to quit Poker.");
+			query = input.next();
+			
+			if (query.equals("-t1") || query.equals("-test1")){
+				t1();
+			}
+			
+			if (query.equals("-t2") || query.equals("-test2")){
+				t2();
+			}
+			
+			if (query.equals("-t3") || query.equals("-test3")){
+				t3();
+			}
+			
+			if (query.equals("-t4") || query.equals("-test4")){
+				t4();
+			}
+		}
+	} //end main method
+	
+	public static void t4() throws InterruptedException {
+		Scanner input = new Scanner( System.in );
+		
+		System.out.println("Please enter a hand to be evaluated: ");
+		String hand1 = input.next();
+		System.out.println("Please enter another hand to be evaluated: ");
+		String hand2 = input.next();
+		
+		String evaluation1 = evaluation(hand1);
+		String evaluation2 = evaluation(hand2);
+		int score1 = compute(evaluation1);
+		int score2 = compute(evaluation2);
+		int score3 = scoring(hand1);
+		int score4 = scoring(hand2);
+		
+		
+		if (score1 > score2)
+			System.out.println("The hand " + hand1 + " is stronger than the hand " + hand2);
+		else if (score1 < score2)
+			System.out.println("The hand " + hand2 + " is stronger than the hand " + hand1);
+		else {
+			if (score3 > score4)
+				System.out.println("The hand " + hand1 + " is stronger than the hand " + hand2);
+			else if (score3 < score4)
+				System.out.println("The hand " + hand2 + " is stronger than the hand " + hand1);
+			else {
+				System.out.println("The two hands are of equal strength.");
+			}
+		}
+		
+	}
+	
+	public static int scoring(String hand){
+		ArrayList<String> Hands = new ArrayList<String>();
+		Hands.add(hand);
+		
+		char[] i1 = new char[Hands.get(0).length()];
+		
+		for (int counter = 0; counter < Hands.get(0).length(); counter++){	
+			i1[counter] = Character.toLowerCase(Hands.get(0).charAt(counter));
+		}
+		
+		int score = 0;
+		
+		ArrayList<Character> det = new ArrayList<Character>();
+		det.add((char) 2);
+		det.add('3');
+		det.add('4');
+		det.add('5');
+		det.add('6');
+		det.add('7');
+		det.add('8');
+		det.add('9');
+		det.add('t');
+		det.add('j');
+		det.add('q');
+		det.add('k');
+		det.add('a');
+		
+		for (int i = 0; i < i1.length; i+=2){
+			score += (det.indexOf(i1[i]) + 1);
+		}
+		
+		
+		return score;
+	
+	}
+	
+	public static int compute(String x){
+		ArrayList<String> det = new ArrayList<String>();
+		det.add("High Card");
+		det.add("1 Pair");
+		det.add("2 Pair");
+		det.add("3 of a Kind");
+		det.add("Straight");
+		det.add("Flush");
+		det.add("Full House");
+		det.add("4 of a Kind");
+		det.add("Straight Flush");
+		
+		return det.indexOf(x) + 1;
+		
+	}
+	
+	public static void t3() throws InterruptedException {
+		Scanner input = new Scanner( System.in );
+		
+		System.out.println("Please enter hand to be evaluated: ");
+
+		String result = evaluation(input.next());
+		
+		System.out.println("This hand is a " + result);
+	}
+	
+	public static String evaluation(String hand) throws InterruptedException{
+		System.out.print("Evaluating hand.");
+		sleeper();
+		ArrayList<String> Hands = new ArrayList<String>();
+		Hands.add(hand);
+		
+		char[] i1 = new char[Hands.get(0).length()];
+		
+		for (int counter = 0; counter < Hands.get(0).length(); counter++){	
+			i1[counter] = Character.toLowerCase(Hands.get(0).charAt(counter));
+		}
+	
+		//begin thoroughly checking the hand
+		
+		double check = 0;
+		int c = 0;
+			for (int j = 0; j < 10; j+=2){
+				for (int i = 0; i < 10; i+=2){
+					if (i1[i] == i1[j]){
+						c+=1;
+					}
+				}
+			}
+			
+			switch(c) {
+			case 7:
+				check+=4;
+				break;
+			case 9:
+				check+=5;
+				break;
+			case 11:
+				check+=6;
+				break;
+			case 13:
+				check+=11;
+				break;
+			case 17:
+				check+=8;
+				break;
+			}
+			
+			String[] i2 = new String[i1.length];
+			for (int i = 0; i < i2.length; i++){
+				i2[i] = Character.toString(i1[i]);
+				if (i2[i].equals("a"))
+					i2[i] = "14";
+				if (i2[i].equals("k"))
+					i2[i] = "13";
+				if (i2[i].equals("q"))
+					i2[i] = "12";
+				if (i2[i].equals("j"))
+					i2[i] = "11";
+				if (i2[i].equals("t"))
+					i2[i] = "10";
+			}
+			
+			int z = 0;
+			for (int j = 0; j < 10; j+=2){
+				for (int i = 0; i < 10; i+=2){
+					if (Integer.parseInt(i2[i]) == Integer.parseInt(i2[j])+1){
+						z+=1;
+					}
+				}
+			}
+			for (int i = 0; i < i2.length; i++){
+				if (i2[i].equals("14"))
+					i2[i] = "1";
+			}
+			for (int j = 0; j < 10; j+=2){
+				for (int i = 0; i < 10; i+=2){
+					if (Integer.parseInt(i2[i]) == Integer.parseInt(i2[j])+1){
+						z+=1;
+					}
+				}
+			}
+
+			
+			if (z == 4){
+				check += 10;
+			}
+
+			if (i1[1] == i1[3] && i1[3] == i1[5] && i1[5] == i1[7] && i1[7] == i1[9]){
+					check += 9; //flush gives 9 points
+			}
+	
+		String[] determination = {"High Card", "High Card", "High Card", "High Card", "1 Pair", "2 Pair", "3 of a Kind", "High Card", "4 of a Kind", "Flush", "Straight","Full House","High Card","High Card","High Card","High Card", "Royal Flush", "High Card", "High Card", "Straight Flush", "High Card", "High Card", "High Card"};	
+			System.out.println("z is " + z);
+		return determination[(int)check];
+	}
+	
+	public static void t2() throws InterruptedException {
+		String[] UnshuffledDeck = Deck();
+		System.out.print("Generating an unshuffled deck.");
+		sleeper();
+		printer(UnshuffledDeck);
+		
+		// Shuffle the unshuffled deck!
+		
+		String[] ShuffledDeck = shuffle(UnshuffledDeck);
+		System.out.print("Shuffling the unshuffled deck.");
+		sleeper();
+		printer(ShuffledDeck);
+		
+		// Deal!
+		
+		String[][] DealtDeck = Deal(ShuffledDeck);
+		
+		System.out.print("The first hand is.");
+		sleeper();
+		printer(DealtDeck[0]);
+		System.out.print("And the second hand is.");
+		sleeper();
+		printer(DealtDeck[1]);
+		System.out.print("And the rest of the deck is.");
+		sleeper();
+		printer(DealtDeck[2]);
+		
+	}
+	
+	public static void t1() throws InterruptedException{
+		String[] UnshuffledDeck = Deck();
+		System.out.print("Generating an unshuffled deck.");
+		sleeper();
+		printer(UnshuffledDeck);
+		
+		// Shuffle the unshuffled deck!
+		
+		String[] ShuffledDeck = shuffle(UnshuffledDeck);
+		System.out.print("Shuffling the unshuffled deck.");
+		sleeper();
+		printer(ShuffledDeck);
+	}
+	
+	public static String[][] Deal(String[] array){
+		int[] even = {0, 2, 4, 6, 8};
+		int[] odd = {1, 3, 5, 7, 9};
+		String[] hand1 = new String[5]; //first hand
+		String[] hand2 = new String[5]; //second hand
+		for (int i = 0; i<= 4; i++){
+			hand1[i] = array[even[i]];
+			hand2[i] = array[odd[i]];
+		}
+		String[] rest = new String[42]; // rest of the deck
+		for (int i = 0; i <= 41; i++){
+			rest[i] = array[i+10];
+		}
+		String[][] newDeck = {hand1,hand2,rest};
+		return newDeck;
+	}
+	
+	public static String[] Deck(){ // Use 2d arrays with the dimension 52x2 of type string to represent type of card and number
+		
+		String[] suit = {"Spades", "Hearts", "Diamonds", "Clubs"};
+		String[] value = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+		
+		String[][] deck = new String[suit.length][value.length];
+		String[] fulldeck = new String[52];
+		int k = 0;
+		for(int i = 0; i < suit.length; i++) {
+			for(int j = 0; j < value.length; j++) {
+				deck[i][j] = value[j] + " of " + suit[i];
+				fulldeck[k] = deck[i][j];
+				k++;
+			}
+		}
+		return fulldeck;		
+	}
+	
+	public static void sleeper() throws InterruptedException{
+		Thread.sleep(1000); //cool sleeping pattern
+		System.out.print(".");
+		Thread.sleep(1000);
+		System.out.print(".");
+		Thread.sleep(1000);
+		System.out.println();
+	}
+	
+	public static String[] shuffle(String[] array){
+		for (int k = 0; k <= array.length -1; k++){ //utilizes 3 loops for comprehensive shuffling
+			for (int i = 0; i <= array.length-1; i++){
+				for (int j = 0; j <= array.length-1; j++){
+					Random random = new Random();
+					swapper(array, random.nextInt(array.length), random.nextInt(array.length));
+				}
+			}
+		}
+		return array;
+	}
+	
+	public static void swapper(String[] a, int b, int c){ //swapper method
+		String x = a[b];
+		String y = a[c];
+		a[b] = y;
+		a[c] = x;
+	}
+	
+	public static void printer(String[][]array) { //elegant 2D array printer
+		for(int row = 0; row < array.length; row++) {
+			System.out.print("[");
+			for(int column = 0; column < array[row].length; column++) {
+				System.out.print(array[row][column]);
+				if (column != array[row].length-1)
+				System.out.print(", ");
+			}
+				System.out.print("]");
+				System.out.println();
+		}
+	}
+
+	public static void printer(String[] x){ //elegant 1D printer	
+		for (int i = 0; i < x.length; i++){
+			System.out.print("[");
+			System.out.print(x[i]);
+			System.out.println("]");
+		}
+		System.out.println();
+	}
+	
+	public static void printer(char[] x){ //elegant 1D printer
+		System.out.println(Arrays.toString(x));
+	}
+	
+	
+}

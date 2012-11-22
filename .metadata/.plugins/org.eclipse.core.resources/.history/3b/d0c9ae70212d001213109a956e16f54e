@@ -1,0 +1,15 @@
+
+public class Workshop {
+
+	public static void main(String[] args) throws InterruptedException {
+	
+		conc("HI", null);
+	}
+	
+	private static void conc (String a, String b) throws InterruptedException {
+		System.out.println(a + b);
+		if (a.equals(null) || b.equals(null))
+			throw "you suck";
+	}
+
+}

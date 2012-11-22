@@ -1,0 +1,13 @@
+
+public class CatsTest {
+
+	public static void main(String[] args) {
+		
+		Cats Frame = new Cats(); // create LabelFrame
+		Frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		Frame.setSize( 260, 180 ); // set frame size
+		Frame.setVisible( true ); // display frame
+
+	}
+
+}
