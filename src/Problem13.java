@@ -107,12 +107,12 @@ public class Problem13 {
 		list.add(new BigInteger("20849603980134001723930671666823555245252804609722"));
 		list.add(new BigInteger("53503534226472524250874054075591789781264330331690"));
 		
-		BigInteger bigIntSum = new BigInteger("0");
+		BigInteger sum = BigInteger.ZERO;
 		
 		for (int i = 0; i <= 100; i++) {
-			bigIntSum += list.get(i);
+			sum = sum.add(list.get(i));
 		}
-			
+		
+		System.out.println(sum);		
 	}
-
 }
