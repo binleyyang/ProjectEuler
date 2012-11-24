@@ -7,8 +7,8 @@ public class TriangleNumbers {
 		ArrayList<Integer> triangle = triangle(5);
 		for (int i = 1; i < 200000; i++) {
 			System.out.println(triangle.get(i) + ":" + divisor(triangle.get(i)));
-			if (divisor(triangle.get(i)) == 501) {
-				System.out.println("The first triangle number that has over 500 divisors is " + triangle.get(i));
+			if (divisor(triangle.get(i)) > 500) {
+				System.out.println("The first triangle number to have over 500 divisors is " + triangle.get(i));
 			break;
 			}
 		}
