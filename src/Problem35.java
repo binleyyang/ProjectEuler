@@ -3,17 +3,20 @@ public class Problem35 {
 	public static void main (String[] args) {
 		
 		int counter = 0;
+		int counter2 = 0;
 		
-		for (int i = 1; i < 10000000; i++) {
+		for (int i = 1; i < 100; i++) {
 			int[] array2 = digits(i);
 			//printer(array2);
 			for (int j = 0; j < array2.length; j++) {
 				if (primecheck(array2[j]) == true) {
+					counter2++;
+					System.out.println(counter2);
+				}
+				if (counter2 == array2.length) {
 					counter++;
 					System.out.println(counter);
 				}
-				else
-					counter += 0;
 			}
 		}
 		System.out.println("The number of circcular primes below 1000000 is " + counter);
