@@ -1,58 +1,40 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.math.BigInteger;
 
 public class Problem20 {
 	
 	public static void main (String [] args) {
 		
-		int x = 12;
+		BigInteger x = new BigInteger("100");
 		System.out.println("The factorial of " + x + " is " + factorial(x) + ".");
-		printer(lister(convert(factorial(x))));
 		System.out.println("The sum of the digits of the factorial of " + x + " is " + sum(factorial(x)) + ".");
 		
 	}
 
-	private static long factorial (int x) {
-		long product = 1;
-		for (int i = 1; i <= x; i++) {
-			product *= i;
+	private static BigInteger factorial (BigInteger x) {
+		BigInteger product = new BigInteger("1");
+		for (BigInteger i = new BigInteger("1"); i.compareTo(x) <= 0; i=i.add(BigInteger.ONE)) {
+			System.out.println(i);
+			product = product.multiply(i);
+			System.out.println("The product is: " + product);
 		}
 		return product;
 	}
 	
-	private static double sum (long x) {
-		int[] array = lister(convert(x));
-		double sum = 0;
-		for(int i = 0; i < array.length; i++) {
-			sum += array[i];
+	private static int sum (BigInteger x) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		BigInteger ten = new BigInteger("10");
+		while (!x.equals(BigInteger.ZERO))
+		{
+		    list.add(0, x.mod(ten).intValue());
+		    x = x.divide(ten);
+		}
+
+		int sum = 0;
+
+		for (int i = 0; i < list.size(); i++){
+			sum+=list.get(i);
 		}
 		return sum;
-	}
-	
-	public static String convert (long x) {
-		return Long.toString(x);
-	}
-	
-	public static void printer(int[] x){
-		System.out.println(Arrays.toString(x));
-	}
-
-	public static int[] lister(String x){
-		long z = Long.parseLong(x);
-		int y = x.length() - 1;
-
-		int [] array = new int[y+1];
-
-		for (int counter = y; counter >= 0; counter--) {
-
-			double a = z / (Math.pow(10, counter));
-
-			int b = (int)(Math.ceil(a) - 1);
-			if (counter == 0){
-				b = b+1;
-			}
-			array[y-counter]=b;
-			z = (int)(z - (b*Math.pow(10, counter))); 
-		}	
-		return array;
 	}
 }
