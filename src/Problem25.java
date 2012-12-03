@@ -30,39 +30,4 @@ public class Problem25 {
 		}
 		return prev1;
 	}
-	
-	public static String converter (BigInteger x) {
-		String s = String.valueOf(x);
-		return s;
-	}
-	
-	public static int[] number(String x){
-		long z = Long.parseLong(x);
-		int y = x.length() - 1;
-
-		int [] array = new int[y+1];
-
-		for (int counter = y; counter >= 0; counter--) {
-
-			double a = z / (Math.pow(10, counter));
-
-			int b = (int)(Math.ceil(a) - 1);
-			if (counter == 0){
-				b = b+1;
-			}
-			array[y-counter]=b;
-			z = (int)(z - (b*Math.pow(10, counter))); 
-		}	
-		return array;
-	}
-	
-	public static void printer(int[] a) { //method to print a 1D array
-		System.out.print("[");
-		for (int row = 0; row < a.length; row++) {
-			System.out.print(a[row]);
-			System.out.print(",");
-		}
-		System.out.println("]");
-		//System.out.println();
-	}
 }
