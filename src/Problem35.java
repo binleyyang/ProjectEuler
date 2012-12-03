@@ -5,28 +5,29 @@ public class Problem35 {
 		int counter = 0;
 		int counter2 = 0;
 		
-		for (int i = 1; i < 100; i++) {
+		for (int i = 2; i < 100; i++) {
 			int[] array2 = digits(i);
-			//printer(array2);
+			printer(array2);
 			for (int j = 0; j < array2.length; j++) {
 				if (primecheck(array2[j]) == true) {
 					counter2++;
-					System.out.println(counter2);
-				}
-				if (counter2 == array2.length) {
-					counter++;
-					System.out.println(counter);
-				}
+					//System.out.println(counter2);
+					if (counter2 == array2.length) {
+						counter++;
+						System.out.println(counter);
+					} else
+						System.out.println("This is not a circular prime");
+				}	
 			}
 		}
-		System.out.println("The number of circcular primes below 1000000 is " + counter);
+		System.out.println("The number of circular primes below 1000000 is " + counter);
 	}
 	
 	public static int[] digits (int a) {
 		  String string = Integer.toString(a);
 		  int[] digits = new int[string.length()];
 
-		  for(int i = 0; i < string.length(); i++){
+		  for (int i = 0; i < string.length(); i++) {
 		    digits[i] = Integer.parseInt(string.substring(i, i+1));
 		  }
 		  return digits;
