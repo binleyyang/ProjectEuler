@@ -6,7 +6,7 @@ public class Problem35 {
 		int counter2 = 0;
 		
 		for (int i = 2; i < 100; i++) {
-			int[] array2 = digits(i);
+			int[] array2 = number(i);
 			printer(array2);
 			for (int j = 0; j < array2.length; j++) {
 				if (primecheck(array2[j]) == true) {
@@ -23,16 +23,7 @@ public class Problem35 {
 		System.out.println("The number of circular primes below 1000000 is " + counter);
 	}
 	
-	public static int[] digits (int a) {
-		  String string = Integer.toString(a);
-		  int[] digits = new int[string.length()];
-
-		  for (int i = 0; i < string.length(); i++) {
-		    digits[i] = Integer.parseInt(string.substring(i, i+1));
-		  }
-		  return digits;
-	}
-	/*public static int[] number (int a) {
+	public static int[] number (int a) {
 		
 		String string = Integer.toString(a);
 		int[] digits = new int[string.length()];
@@ -54,7 +45,7 @@ public class Problem35 {
 		return digits;
 		
 	}
-	*/
+	
 	public static boolean primecheck(int x){
 			
 		for (int counter = 2; counter < x; counter++){
