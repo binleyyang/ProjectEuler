@@ -23,27 +23,29 @@ public class Problem35 {
 		System.out.println("The number of circular primes below 1000000 is " + counter);
 	}
 	
-	public static int[] number (int a) {
-		
-		String string = Integer.toString(a);
-		int[] digits = new int[string.length()];
-		int number = Integer.parseInt(string);
-		
-		for (int i = string.length()-1; i >= 0; i++) {
-			double b = a / Math.pow(10, i);
-			int rem = (int)(Math.ceil(b) - 1);
-			if (i == 0) {
-				rem++;
+	public static int[] number(int x) {
+		String t = Integer.toString(x);
+		int z = x;
+		int y = t.length() - 1;
+
+		int [] array = new int[y+1];
+
+		for (int counter = y; counter >= 0; counter--) {
+
+			double a = z / (Math.pow(10, counter));
+
+			int b = (int)(Math.ceil(a) - 1);
+			if (counter == 0){
+				b = b+1;
 			}
-			digits[i] = rem;
-			number = (int)(a - (rem*Math.pow(10, i)));
+			array[y-counter]=b;
+			z = (int)(z - (b*Math.pow(10, counter))); 
 		}
-		
-		for (int j = digits.length; j <= 1; j--) {
-			
+		if(array[array.length-1]==10){
+			array[array.length-2]+=1;
+			array[array.length-1]=0;
 		}
-		return digits;
-		
+		return array;
 	}
 	
 	public static boolean primecheck(int x){

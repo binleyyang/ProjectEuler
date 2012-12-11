@@ -17,7 +17,7 @@ public class Problem16 {
 		System.out.println("The sum of the digits of 2^1000 is " + sum(number));
 	}
 	
-	private static int sum (BigInteger x) {
+	private static int sum (BigInteger x) { //method that sums the digits of a number
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		BigInteger ten = new BigInteger("10");
 		while (!x.equals(BigInteger.ZERO))

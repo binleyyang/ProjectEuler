@@ -6,11 +6,13 @@ public class PrimeFactor {
 		System.out.println("The greatest prime factor of " + number + " is " + prime(number) + ".");
 	}
 	
-	private static int prime(long x) {
-		int max = 0, factor = 0;
-		for (int i = 1; i < x; i++) {
+	private static long prime(long x) {
+		long max = 0;
+		long factor = 0;
+		for (long i = 1; i < x; i++) {
 			if (x % i == 0) {
-				factor = (int)x / i;
+				factor = x / i;
+				System.out.println(factor);
 				if (primecheck(factor) == true && i != 1) {
 					if (factor > max) {
 						max = factor;
@@ -22,7 +24,7 @@ public class PrimeFactor {
 		return max;
 	}
 	
-	public static boolean primecheck(int x){
+	public static boolean primecheck(long x){
 		
 		for (int counter = 2; counter < x; counter++){
 			if (x % counter == 0)

@@ -17,6 +17,7 @@ public class Problem20 {
 			System.out.println(i);
 			product = product.multiply(i);
 			System.out.println("The product is: " + product);
+			System.out.println();
 		}
 		return product;
 	}
