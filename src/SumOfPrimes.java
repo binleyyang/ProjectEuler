@@ -5,7 +5,7 @@ public class SumOfPrimes {
 		
 		long sum = 0;
 		for (int i = 2; i < 2000000; i++) {
-			if (primecheck(i) == true) {
+			if (primeChecker(i) == true) {
 				sum += i;
 				System.out.println(i + " : " + sum); //tracking the progress of the program
 			}
@@ -14,10 +14,10 @@ public class SumOfPrimes {
 		
 	}
 
-	public static boolean primecheck(int x) {
+	public static boolean primeChecker(int x) {
 		
-		for (int counter = 2; counter < x; counter++){
-			if (x % counter == 0)
+		for (int count = 2; count < x; count++){
+			if (x % count == 0)
 				return false;
 		}
 		return true;
