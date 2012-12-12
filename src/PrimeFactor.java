@@ -13,7 +13,7 @@ public class PrimeFactor {
 			if (x % i == 0) {
 				factor = x / i;
 				System.out.println(factor);
-				if (primecheck(factor) == true && i != 1) {
+				if (primeChecker(factor) == true && i != 1) {
 					if (factor > max) {
 						max = factor;
 						System.out.println(max);
@@ -24,7 +24,7 @@ public class PrimeFactor {
 		return max;
 	}
 	
-	public static boolean primecheck(long x){
+	public static boolean primeChecker(long x){
 		
 		for (int counter = 2; counter < x; counter++){
 			if (x % counter == 0)
