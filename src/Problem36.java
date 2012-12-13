@@ -29,14 +29,14 @@ public class Problem36 {
 	
 	public static boolean checker (BigInteger a) {
 		ArrayList<Integer> x = digits(a);
-		Integer[] list = x.toArray(new Integer[0]);
+		Integer[] n = x.toArray(new Integer[0]);
 		int count = 0;
 		
-		for (int i = 0; i < list.length/2; i++) {
-			if (list[i] == list[list.length-i-1])
+		for (int i = 0; i < n.length/2; i++) {
+			if (n[i] == n[n.length-i-1])
 				count++;
 		}
-		if (count == list.length/2)
+		if (count == n.length/2)
 			return true;
 		
 		return false;
